@@ -17,6 +17,7 @@ import com.uca.parcialfinalncapas.utils.mappers.TicketMapper;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.List;
 
@@ -80,17 +81,30 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public TicketResponse getTicketById(Long id) {
-    var ticketExistente = ticketRepository.findById(id)
-            .orElseThrow(() -> new TicketNotFoundException("Ticket no encontrado con ID: " + id));
+        var ticketExistente = ticketRepository.findById(id)
+                .orElseThrow(() -> new TicketNotFoundException("Ticket no encontrado con ID: " + id));
 
-    var usuarioSolicitante = userRepository.findById(ticketExistente.getUsuarioId())
-            .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
+        var usuarioSolicitante = userRepository.findById(ticketExistente.getUsuarioId())
+                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
 
-    var usuarioSoporte = userRepository.findById(ticketExistente.getTecnicoAsignadoId())
-            .orElseThrow(() -> new UserNotFoundException("Usuario asignado no encontrado"));
+        var usuarioSoporte = userRepository.findById(ticketExistente.getTecnicoAsignadoId())
+                .orElseThrow(() -> new UserNotFoundException("Usuario asignado no encontrado"));
+
+        // Get current logged-in user
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        var usuarioActual = userRepository.findByCorreo(currentUsername)
+                .orElseThrow(() -> new UserNotFoundException("Usuario autenticado no encontrado"));
+
+        // Role-based restriction
+        if (usuarioActual.getNombreRol().equals(Rol.USER.getValue()) &&
+                !usuarioSolicitante.getCorreo().equals(currentUsername)) {
+            throw new RuntimeException("No tienes permiso para ver este ticket");
+        }
 
         return TicketMapper.toDTO(ticketExistente, usuarioSolicitante.getCorreo(), usuarioSoporte.getCorreo());
     }
+
 
     @Override
     public List<TicketResponseList> getAllTickets() {
