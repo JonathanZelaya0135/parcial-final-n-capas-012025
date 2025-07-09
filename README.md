@@ -4,8 +4,8 @@ Este repositorio contiene un proyecto para evaluar y practicar los conceptos de 
 
 ### Estudiantes
 - **Nombre del estudiante 1**: [Tu nombre aquí] - [Carnet aquí]
-- **Nombre del estudiante 2**: [Tu nombre aquí] - [Carnet aquí]
-- Sección: [Tu sección aquí]
+- **Nombre del estudiante 2**: Ada María Bonilla Orantes - 00048020
+- Sección: 1
 ---
 
 ## Sistema de Soporte Técnico
