@@ -31,7 +31,6 @@ public class TicketServiceImpl implements TicketService {
 
     private final TicketRepository ticketRepository;
     private final UserRepository userRepository;
-    String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 
     @Override
     @Transactional
