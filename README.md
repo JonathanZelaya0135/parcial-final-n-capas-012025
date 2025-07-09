@@ -6,6 +6,8 @@ Este repositorio contiene un proyecto para evaluar y practicar los conceptos de 
 - **Nombre del estudiante 1**: Jonathan Rodrigo Zelaya Alvarado - 00403821
 - **Nombre del estudiante 2**: Ada María Bonilla Orantes - 00048020
 - Sección: 1
+
+  En teoria solo nos hizo falta dockerizarlo :(
 ---
 
 ## Sistema de Soporte Técnico
