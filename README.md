@@ -7,7 +7,14 @@ Este repositorio contiene un proyecto para evaluar y practicar los conceptos de 
 - **Nombre del estudiante 2**: Ada María Bonilla Orantes - 00048020
 - Sección: 1
 
-  En teoria solo nos hizo falta dockerizarlo :(
+En teoria solo nos hizo falta dockerizarlo :(
+
+### Instrucciones para correr
+- Debido a que no nos alcanzo el tiempo para dockerizarlo, se tendria que abrir con el IDE IntelliJ para poder ejecutarlo
+- Para realizar las pruebas en Postman es necesario crear un usuario
+- Cuando se haya creado el usuario, se puede hacer login en el endpoint **/api/auth/login** usando *username* y *password* como cuerpo del json para recibir el token
+- Luego, usando el token, se puede hacer las pruebas necesarias en los demas endpoints
+  
 ---
 
 ## Sistema de Soporte Técnico
